@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+
+
+    .logo_container2
+    {
+      padding-left:650px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo_container">
+    <img src="static/img/pdf1.jpg" alt="logo">
+  </div>
+  <br>
+  {% for i in product %}
+  <div class="logo_container2">
+    <img src="static/img/logo3.png" alt="" height="50px">
+  </div>
+  <br>
+  <br>
+  <!-- <hr> -->
+  <div class="image_container">
+    <img src="{{i.product.product_image.path}}" alt="" width="1000px" height="1000px">
+  </div>
+  <hr>
+  <br>
+    {% if price_display %}
+      <div>
+        {% if branding_cost_dis %}
+          <h1 style="color:black;">Branding Cost: Rs.{{ i.product.branding_cost|floatformat:2 }}/-</h1>
+        {% else %}
+          <h1 style="color:white;">.</h1>
+        {% endif %}
+        {% if branding_cat_dis %}
+          <h1 style="color:black;">Branding category: {{i.product.branding_category}}</h1>
+        {% else %}
+          <h1 style="color:white;">.</h1>
+        {% endif %}
+        {% if transportation_cost_dis %}
+          <h1 style="color:black;">Transportation cost: {{i.product.transportation_cost}}</h1>
+        {% else %}
+          <h1 style="color:white;">.</h1>
+        {% endif %}
+        {% if gridfokuz_price_dis %}
+          <h1 style="color:black;">Grid Fokuz Price: Rs.{{ i.product.final_price|floatformat:2 }}/- (Total Price)</h1>
+        {% else %}
+          <h1 style="color:white;">.</h1>
+        {% endif %}
+      </div>
+      {% endif %}
+        <img src="static/img/gridbar.jpg" alt="" class="image4" height="50px">
+  {% endfor %}
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <img src="static/img/temp.png" alt="" height="1000px">
+  <br>
+  <br>
+  <br>
+  <img src="static/img/footer.jpg" alt="">
+
+</body>
+</html>

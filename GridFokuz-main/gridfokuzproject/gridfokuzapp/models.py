@@ -1,0 +1,69 @@
+from django.db import models
+from django.contrib.auth.models import User
+
+# Create your models here.
+
+class AddVendors(models.Model):
+    vendorname = models.CharField(max_length=30)
+    ventorcode = models.CharField(max_length=30, null=True)
+
+    def __str__(self):
+        return str(self.vendorname)
+    
+
+class Category(models.Model):
+    category_name = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.category_name
+    
+
+class SubCategory(models.Model):
+    subcategory_name = models.CharField(max_length=50)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,null=True,blank=True)
+    
+    def __str__(self):
+        return self.subcategory_name
+    
+    
+class AddProducts(models.Model):
+    SKU = models.CharField(max_length=10, null=True)
+    Vendor = models.ForeignKey(AddVendors ,on_delete=models.SET_NULL, null=True)
+    Category = models.CharField(max_length=50, null=True)
+    Sub_category = models.CharField(max_length=50, null=True)
+    Product_Name = models.CharField(max_length=50, null=True)
+    MRP = models.IntegerField(null=True)
+    Vendor_Price = models.FloatField(null=True)
+
+    Total_GF_price = models.FloatField(null=True)
+    final_price = models.FloatField(null=True)
+    product_image = models.ImageField(upload_to="product_images", null=True)
+
+    discription = models.CharField(max_length=250, null=True)
+    temp_discription = models.CharField(max_length=250, null=True)
+    branding_category = models.CharField(max_length=50, null=True)
+    profit_percentage = models.FloatField(default=0,null=True)
+    branding_cost = models.FloatField(default=0, null=True)
+    transportation_cost = models.FloatField(default=0, null=True)
+    tax = models.FloatField(null=True)
+    profit_type = models.CharField(max_length=30, null=True)
+    usrinput = models.CharField(max_length=250, null=True)
+
+    def __str__(self):
+        return self.Product_Name
+
+class ManualComboTemp(models.Model):
+    product = models.ForeignKey(AddProducts, on_delete=models.CASCADE, null=True)
+    usr = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
+
+class PDFtemp(models.Model):
+    product = models.ForeignKey(AddProducts, on_delete=models.CASCADE, null=True)
+    usr = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
+    grand_total = models.FloatField(null=True)
+
+class Logo(models.Model):
+    image = models.ImageField(upload_to="Logo1")
+
+    def __str__(self):
+        return str(self.image)
+
